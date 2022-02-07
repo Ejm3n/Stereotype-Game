@@ -7,8 +7,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int cardCount;
     [SerializeField] private bool autoExpand = true;
     [SerializeField] private CardController cardPrefab;
-    [SerializeField] private Vector3 whereToSpawn;
-
+    [SerializeField] private CardSO easySentences;
+    [SerializeField] private Vector2[] positions;
     private ObjectPool<CardController> pool;
     private void Awake()
     {
@@ -19,15 +19,22 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+
+        if(Input.GetKeyDown(KeyCode.Q))
         {
-            CreateCard();
+            CreateCard(true);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            CreateCard(false);
         }
     }
 
-    private void CreateCard()
+    private void CreateCard(bool isStereotype)
     {
-        CardController card = pool.GetFreeElement();
-        card.transform.position = whereToSpawn;
+        CardController card = pool.GetFreeElement();     
+        card.transform.position = transform.position;
+        card.IsStereotype = isStereotype;
+        card.CardContent = easySentences.Content[0];
     }
 }

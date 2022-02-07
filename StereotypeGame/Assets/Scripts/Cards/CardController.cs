@@ -7,8 +7,8 @@ public class CardController : MonoBehaviour
     public string Text;
     [SerializeField] private TextMeshPro textMesh;
     [SerializeField] private bool IsClickable = true;
-    private CardContent cardContent;
-    private bool isStereotype;
+   [SerializeField] private CardContent cardContent;
+   [SerializeField] private bool isStereotype = false;
 
     public CardContent CardContent {set => cardContent = value; }
     public bool IsStereotype {set => isStereotype = value; }
@@ -16,15 +16,13 @@ public class CardController : MonoBehaviour
 
     private void Awake()
     {
+
         textMesh.text = Text;
     }
     private void Update()
     {
         transform.Translate(Vector2.down * GameManager.Instance.CardSpeed * Time.deltaTime);
-    }
-    private void OnEnable()
-    {
-        if(isStereotype)
+        if (isStereotype)
         {
             textMesh.text = cardContent.Stereotype;
         }
@@ -33,9 +31,14 @@ public class CardController : MonoBehaviour
             textMesh.text = cardContent.Fact;
         }
     }
+    private void OnEnable()
+    {
+       
+    }
 
     private void OnMouseDown()
     {
+        Debug.Log("fsadfsd");
         if(IsClickable)
             Pressed();
     }
@@ -43,17 +46,14 @@ public class CardController : MonoBehaviour
     {
         if(isStereotype)
         {
-            ChangeToFact();
+            isStereotype = false;
         }
         else
         {
             GameManager.Instance.LoseLife();
         }
     }
-    private void ChangeToFact()
-    {
-        textMesh.text = cardContent.Fact;
-    }
+
    
 
 }
