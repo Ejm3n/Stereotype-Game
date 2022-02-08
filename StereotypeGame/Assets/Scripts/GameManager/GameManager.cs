@@ -11,12 +11,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]private int lives = 3;
 
     [SerializeField] private float cardSpeed;
-    public float CardSpeed { get => cardSpeed;}
 
+    [SerializeField] private float timeToChangeMode;
+    private bool easyMode= true;
+    private bool gameplay = true;
+    public float CardSpeed { get => cardSpeed;}
+    public bool EasyMode { get => easyMode; }
+    public bool Gameplay { get => gameplay; set => gameplay = value; }
 
     private void Awake()
     {
         instance = this;
+        StartCoroutine(ModeChanger());
     }
     public void LoseLife()
     {
@@ -24,9 +30,17 @@ public class GameManager : MonoBehaviour
         if (lives <= 0)
             EndGame();
     }
-
+    private IEnumerator ModeChanger()
+    {
+        yield return new WaitForSeconds(timeToChangeMode);
+        easyMode = false;
+        yield return new WaitForSeconds(timeToChangeMode);
+        Gameplay = false;
+        EndGame();
+    }
     private void EndGame()
     {
+        Gameplay = false;
         Debug.Log("EndGame");
     }
 }

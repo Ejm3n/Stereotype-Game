@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8178155305089198418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.5315, y: 2.7658, z: 1}
+  m_LocalPosition: {x: 0, y: 0.1419, z: 0}
+  m_LocalScale: {x: 4.5315, y: 1.9637519, z: 1}
   m_Children: []
   m_Father: {fileID: 8178155306639446008}
   m_RootOrder: 1
@@ -95,11 +95,11 @@ GameObject:
   - component: {fileID: 8178155306639446009}
   m_Layer: 0
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8178155306639446008
 Transform:
   m_ObjectHideFlags: 0
@@ -161,6 +161,7 @@ MonoBehaviour:
     Fact: fact
     Stereotype: stereo
   isStereotype: 1
+  timeToDisable: 25
 --- !u!1 &8666122952527859770
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.013594627, y: 0.01659584}
+  m_AnchoredPosition: {x: 0, y: 0.12}
   m_SizeDelta: {x: 4.4674, y: 2.6291}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8666122952527859769
@@ -259,9 +260,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0434\u0435\u0432\u043E\u0447\u043A\u0438 \u0434\u043E\u043B\u0436\u043D\u044B
-    \u0432\u044B\u0431\u0438\u0440\u0430\u0442\u044C \u0442\u0432\u043E\u0440\u0447\u0435\u0441\u043A\u0438\u0435
-    \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438"
+  m_text: "\u043C\u0443\u0436\u0435\u0441\u0442\u0432\u043E\u043C \u043C\u043E\u0436\u0435\u0442
+    \u043E\u0431\u043B\u0430\u0434\u0430\u0442\u044C \u043B\u044E\u0431\u043E\u0439
+    \u0447\u0435\u043B\u043E\u0432\u0435\u043A \u0432\u043D\u0435 \u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E\u0441\u0442\u0438
+    \u043E\u0442 \u043F\u043E\u043B\u0430 \u0438 \u043F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -288,8 +290,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.58
-  m_fontSizeBase: 4.58
+  m_fontSize: 3.43
+  m_fontSizeBase: 3.43
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

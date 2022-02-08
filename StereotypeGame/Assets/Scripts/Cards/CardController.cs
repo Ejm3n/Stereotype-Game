@@ -9,7 +9,7 @@ public class CardController : MonoBehaviour
     [SerializeField] private bool IsClickable = true;
    [SerializeField] private CardContent cardContent;
    [SerializeField] private bool isStereotype = false;
-
+    [SerializeField] private int timeToDisable;
     public CardContent CardContent {set => cardContent = value; }
     public bool IsStereotype {set => isStereotype = value; }
   
@@ -33,9 +33,13 @@ public class CardController : MonoBehaviour
     }
     private void OnEnable()
     {
-       
+        StartCoroutine(DisableObject());
     }
-
+    private IEnumerator DisableObject()
+    {
+        yield return new WaitForSeconds(timeToDisable);
+        gameObject.SetActive(false);
+    }
     private void OnMouseDown()
     {
         Debug.Log("fsadfsd");
