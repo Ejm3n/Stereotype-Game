@@ -42,7 +42,6 @@ public class CardController : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Debug.Log("fsadfsd");
         if(IsClickable)
             Pressed();
     }
