@@ -6,9 +6,14 @@ public class CardDisabler : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Card"))
+        if (collision.GetComponent<CardController>())
         {
-            collision.GetComponent<GameObject>().SetActive(false);
+            CardController obj = collision.GetComponent<CardController>();
+            if (obj.IsStereotype)
+            {
+                GameManager.Instance.LoseLife();
+            }
+            collision.gameObject.SetActive(false);
         }
     }
 }

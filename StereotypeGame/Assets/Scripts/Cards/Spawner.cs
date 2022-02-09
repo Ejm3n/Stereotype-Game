@@ -24,14 +24,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private CardSO easySentences;
     [SerializeField] private CardSO hardSentences;
     [SerializeField] private float timeToCreateCard;
+    [SerializeField] private float timeToCreateCardFaster;
     [SerializeField] private Vector2[] positions;
     private ObjectPool<CardController> pool;
-    private List<ContentStorage> easyCardContent    ;
+    private List<ContentStorage> easyCardContent ;
     private List<ContentStorage> hardCardContent ;
 
     private int currentCardNum;
     private int currentSpawnPoint;
-    private void Awake()
+    private void Start()
     {
         pool = new ObjectPool<CardController>(cardPrefab, cardCount, transform);
         pool.AutoExpand = autoExpand;
@@ -42,11 +43,29 @@ public class Spawner : MonoBehaviour
     }
     private List<ContentStorage> RandomizeCardContent(List<ContentStorage> list, CardSO contentIn)
     {
-        list = new List<ContentStorage>();
-        for (int i = 0; i< contentIn.Content.Length;i++)//заполняем
+       
+        while(true)
         {
-            list.Add(new ContentStorage( contentIn.Content[i], Random.Range(0, 2) == 0));
+            list = new List<ContentStorage>();
+            for (int i = 0; i < contentIn.Content.Length; i++)//заполняем
+            {
+                list.Add(new ContentStorage(contentIn.Content[i], Random.Range(0, 2) == 0));
+            }
+            int isa = 0;
+            int isnt = 0;
+            foreach (ContentStorage cs in list)
+            {
+                if (cs.IsStereotype)
+                    isa++;
+                else
+                    isnt++;
+            }
+            if (Mathf.Abs(isa-isnt)<=1)
+            {
+                break;
+            }           
         }
+       
         for (int i = 0; i < list.Count; i++)//шафлим
         {
             ContentStorage temp = list[i];
@@ -59,7 +78,14 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator TimerToCreation()
     {
-        while( true)
+        ChangeSpawnPoint();
+        if (currentCardNum >= easyCardContent.Count)
+            currentCardNum = 0;
+        if (GameManager.Instance.EasyMode)
+            CreateCard(easyCardContent[currentCardNum].IsStereotype, true);
+        else
+            CreateCard(hardCardContent[currentCardNum].IsStereotype, false);
+        while ( true)
         {
             
             yield return new WaitForSeconds(timeToCreateCard);
@@ -93,5 +119,9 @@ public class Spawner : MonoBehaviour
             card.CardContent = hardCardContent[currentCardNum].Content;
         card.IsStereotype = isStereotype;
         currentCardNum++;
+    }
+    private void SpeedUp()
+    {
+
     }
 }

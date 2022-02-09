@@ -11,7 +11,7 @@ public class CardController : MonoBehaviour
    [SerializeField] private bool isStereotype = false;
     [SerializeField] private int timeToDisable;
     public CardContent CardContent {set => cardContent = value; }
-    public bool IsStereotype {set => isStereotype = value; }
+    public bool IsStereotype { get => isStereotype; set => isStereotype = value; }
   
 
     private void Awake()
@@ -49,6 +49,7 @@ public class CardController : MonoBehaviour
     {
         if(isStereotype)
         {
+            GameManager.Instance.AddScore();
             isStereotype = false;
         }
         else

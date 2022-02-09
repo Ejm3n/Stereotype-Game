@@ -3,50 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameCanvas;
-    [SerializeField] private GameObject pauseCanvas;
-    [SerializeField] private Image[] lives;
+    [SerializeField] private GameObject endCanvas;
+    [SerializeField] private GameObject startCanvas;
+    [SerializeField] private GameObject[] lives;
     [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private TextMeshProUGUI endScore;
     [SerializeField] private TextMeshProUGUI time;
     private float timeRemain;
-    private float minuts;
-    private float second;
     private int localLives;
+    private TimeSpan timeSpanLeft;
     private void Start()
     {
+        startCanvas.SetActive(true);
+        gameCanvas.SetActive(false);
+        endCanvas.SetActive(false);
+        Time.timeScale = 0;
         timeRemain = GameManager.Instance.Timer;
-        minuts = timeRemain/60;
-        second = timeRemain%60;
-        time.text = $"{minuts}:00";
         localLives = GameManager.Instance.Lives;
+        GameManager.Instance.onTakeDamage += CheckLives;
+        GameManager.Instance.onScoreAdding += ChangeScore;
+        GameManager.Instance.onGameEnd += EndGame;
     }
     private void Update()
     {
-        ChangeTimer();
+        timeRemain -= Time.deltaTime;
+        timeSpanLeft = TimeSpan.FromSeconds(timeRemain);
+        time.text = timeSpanLeft.ToString(@"mm\:ss");
     }
-    private void ChangeTimer()
+    public void StartGame()
     {
-        if (second <= 0)
-        {
-            minuts -= 1;
-            second = 59;
-        }
-        else
-            second = Mathf.Clamp(second - Time.deltaTime, 0, 60);
-
-        if (second >= 10)
-            time.text = $"{minuts}:{Mathf.CeilToInt(second)}";
-        else
-            time.text = $"{minuts}:0{Mathf.CeilToInt(second)}";
+        startCanvas.SetActive(false);
+        gameCanvas.SetActive(true);
+        endCanvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(0);
     }
     private void CheckLives()
     {
         for(int i = localLives;i>GameManager.Instance.Lives;i--)
         {
-
+            if(i>0)
+                lives[i-1].SetActive(false);
         }
+    }
+    private void ChangeScore()
+    {
+        score.text = GameManager.Instance.CurrentScore.ToString() ;
+    }
+    
+    private void EndGame()
+    {
+        endScore.text = score.text;
+        gameCanvas.SetActive(false);
+        endCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 }

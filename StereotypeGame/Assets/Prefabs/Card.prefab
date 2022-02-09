@@ -93,13 +93,14 @@ GameObject:
   - component: {fileID: 8178155306639446008}
   - component: {fileID: 8178155306639446015}
   - component: {fileID: 8178155306639446009}
+  - component: {fileID: -5799904082774103678}
   m_Layer: 0
   m_Name: Card
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8178155306639446008
 Transform:
   m_ObjectHideFlags: 0
@@ -162,6 +163,27 @@ MonoBehaviour:
     Stereotype: stereo
   isStereotype: 1
   timeToDisable: 25
+--- !u!50 &-5799904082774103678
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8178155306639446014}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &8666122952527859770
 GameObject:
   m_ObjectHideFlags: 0
