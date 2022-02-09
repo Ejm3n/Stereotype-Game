@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] private CardSO easySentences;
     [SerializeField] private CardSO hardSentences;
     [SerializeField] private float timeToCreateCard;
-    [SerializeField] private float timeToCreateCardFaster;
     [SerializeField] private Vector2[] positions;
     private ObjectPool<CardController> pool;
     private List<ContentStorage> easyCardContent ;
@@ -78,6 +77,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator TimerToCreation()
     {
+        bool nulled = false;
         ChangeSpawnPoint();
         if (currentCardNum >= easyCardContent.Count)
             currentCardNum = 0;
@@ -90,12 +90,17 @@ public class Spawner : MonoBehaviour
             
             yield return new WaitForSeconds(timeToCreateCard);
             ChangeSpawnPoint();
-            if (currentCardNum >= easyCardContent.Count)
+            if (currentCardNum >= easyCardContent.Count && !nulled)
+            {
                 currentCardNum = 0;
+                nulled = true;
+            }
             if (GameManager.Instance.EasyMode)
                 CreateCard(easyCardContent[currentCardNum].IsStereotype, true);
-            else
+            else if (hardCardContent.Count > currentCardNum)
                 CreateCard(hardCardContent[currentCardNum].IsStereotype, false);
+            else if (!(hardCardContent.Count > currentCardNum))
+                break;
         }
     }
     private void ChangeSpawnPoint()

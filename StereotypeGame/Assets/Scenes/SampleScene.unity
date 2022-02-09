@@ -171,8 +171,7 @@ MonoBehaviour:
   cardPrefab: {fileID: 8178155306639446009, guid: 98d31ed381d8d4f42845e34c2dadba1e, type: 3}
   easySentences: {fileID: 11400000, guid: bed7d533338ba0f4b8a1ca739eda2db1, type: 2}
   hardSentences: {fileID: 11400000, guid: 525b22cb2122c8a49a0c338fe33f0548, type: 2}
-  timeToCreateCard: 3.5
-  timeToCreateCardFaster: 3
+  timeToCreateCard: 2.89
   positions:
   - {x: -2.22, y: 10.41}
   - {x: 2.22, y: 10.41}
@@ -1613,7 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
-  cardSpeed: 1
+  cardSpeed: 1.2
   speedToAdd: 0.5
   timeToChangeMode: 60
   timer: 120

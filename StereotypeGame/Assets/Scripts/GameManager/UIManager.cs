@@ -67,4 +67,5 @@ public class UIManager : MonoBehaviour
         endCanvas.SetActive(true);
         Time.timeScale = 0;
     }
+
 }
