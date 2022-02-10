@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeToChangeMode;
     [SerializeField] private float timer;
     [SerializeField] private int scoreToAdd = 1;
+    [SerializeField] private int whenToSpeedUp;
 
     [SerializeField] private bool FINISH;
 
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
     }
     private void CheckSpeedToAdd()
     {
-        if (currentScore % 10 == 0)
+        if (currentScore % whenToSpeedUp == 0)
         {
             cardSpeed += speedToAdd;
             onSpeedChange?.Invoke();

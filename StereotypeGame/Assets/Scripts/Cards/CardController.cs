@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class CardController : MonoBehaviour
 {
+    public Transform SpriteHolder;
     public string Text;
     [SerializeField] private TextMeshPro textMesh;
     [SerializeField] private bool IsClickable = true;
@@ -16,7 +17,6 @@ public class CardController : MonoBehaviour
 
     private void Awake()
     {
-
         textMesh.text = Text;
     }
     private void Update()
@@ -33,6 +33,7 @@ public class CardController : MonoBehaviour
     }
     private void OnEnable()
     {
+        IsClickable = true;
         StartCoroutine(DisableObject());
     }
     private IEnumerator DisableObject()
@@ -56,6 +57,7 @@ public class CardController : MonoBehaviour
         {
             GameManager.Instance.LoseLife();
         }
+        IsClickable = false;
     }
 
    

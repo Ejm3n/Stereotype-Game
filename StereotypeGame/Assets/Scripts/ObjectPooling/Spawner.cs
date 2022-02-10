@@ -25,6 +25,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private CardSO hardSentences;
     [SerializeField] private float timeToCreateCard;
     [SerializeField] private Vector2[] positions;
+    [SerializeField] private float rotationMax;
     private ObjectPool<CardController> pool;
     private List<ContentStorage> easyCardContent ;
     private List<ContentStorage> hardCardContent ;
@@ -40,6 +41,7 @@ public class Spawner : MonoBehaviour
         
         StartCoroutine(TimerToCreation());
     }
+
     private List<ContentStorage> RandomizeCardContent(List<ContentStorage> list, CardSO contentIn)
     {
        
@@ -118,15 +120,13 @@ public class Spawner : MonoBehaviour
     {
         CardController card = pool.GetFreeElement();
         card.transform.position = positions[currentSpawnPoint];
-        if(isEasy)
+        card.SpriteHolder.rotation = Quaternion.Euler(0, 0, Random.Range(-rotationMax, rotationMax));
+        if (isEasy)
             card.CardContent = easyCardContent[currentCardNum].Content;
         else
             card.CardContent = hardCardContent[currentCardNum].Content;
         card.IsStereotype = isStereotype;
         currentCardNum++;
     }
-    private void SpeedUp()
-    {
 
-    }
 }

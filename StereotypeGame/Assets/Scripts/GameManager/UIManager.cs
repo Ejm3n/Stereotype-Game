@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameCanvas;
-    [SerializeField] private GameObject endCanvas;
+    [SerializeField] private GameObject questionCanvas;
     [SerializeField] private GameObject startCanvas;
     [SerializeField] private GameObject[] lives;
     [SerializeField] private TextMeshProUGUI score;
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     {
         startCanvas.SetActive(true);
         gameCanvas.SetActive(false);
-        endCanvas.SetActive(false);
+        questionCanvas.SetActive(false);
         Time.timeScale = 0;
         timeRemain = GameManager.Instance.Timer;
         localLives = GameManager.Instance.Lives;
@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     {
         startCanvas.SetActive(false);
         gameCanvas.SetActive(true);
-        endCanvas.SetActive(false);
+        questionCanvas.SetActive(false);
         Time.timeScale = 1;
     }
     public void PlayAgain()
@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
     {
         endScore.text = score.text;
         gameCanvas.SetActive(false);
-        endCanvas.SetActive(true);
+        questionCanvas.SetActive(true);
         Time.timeScale = 0;
     }
 
