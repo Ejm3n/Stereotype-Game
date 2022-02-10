@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameCanvas;
     [SerializeField] private GameObject questionCanvas;
     [SerializeField] private GameObject startCanvas;
+    [SerializeField] private GameObject buttonsCanvas;
     [SerializeField] private GameObject[] lives;
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI endScore;
@@ -21,14 +22,15 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         startCanvas.SetActive(true);
-        gameCanvas.SetActive(false);
+        gameCanvas.SetActive(false);    
         questionCanvas.SetActive(false);
+        buttonsCanvas.SetActive(false);
         Time.timeScale = 0;
         timeRemain = GameManager.Instance.Timer;
         localLives = GameManager.Instance.Lives;
         GameManager.Instance.onTakeDamage += CheckLives;
         GameManager.Instance.onScoreAdding += ChangeScore;
-        GameManager.Instance.onGameEnd += EndGame;
+        GameManager.Instance.onGameEnd += OpenQuestionCanvas;
     }
     private void Update()
     {
@@ -38,6 +40,7 @@ public class UIManager : MonoBehaviour
     }
     public void StartGame()
     {
+        buttonsCanvas.SetActive(true);
         startCanvas.SetActive(false);
         gameCanvas.SetActive(true);
         questionCanvas.SetActive(false);
@@ -47,6 +50,14 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void OpenQuestionCanvas()
+    {
+        endScore.text = score.text;
+        gameCanvas.SetActive(false);
+        questionCanvas.SetActive(true);
+        Time.timeScale = 0;
+    }
+
     private void CheckLives()
     {
         for(int i = localLives;i>GameManager.Instance.Lives;i--)
@@ -60,12 +71,5 @@ public class UIManager : MonoBehaviour
         score.text = GameManager.Instance.CurrentScore.ToString() ;
     }
     
-    private void EndGame()
-    {
-        endScore.text = score.text;
-        gameCanvas.SetActive(false);
-        questionCanvas.SetActive(true);
-        Time.timeScale = 0;
-    }
-
+    
 }
