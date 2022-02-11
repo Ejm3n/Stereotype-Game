@@ -19,10 +19,10 @@ public class SoundManagerAllControll : MonoBehaviour
 
     [SerializeField] private ButtonUISpriteChanger muteButton;
 
-    private void OnLevelWasLoaded(int level)
-    {
+    //private void OnLevelWasLoaded(int level)
+    //{
        
-    }
+    //}
 
     private void Awake()
     {
