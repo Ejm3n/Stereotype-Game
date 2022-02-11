@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject questionCanvas;
     [SerializeField] private GameObject startCanvas;
     [SerializeField] private GameObject buttonsCanvas;
+    [SerializeField] private GameObject endCanvas;
     [SerializeField] private GameObject[] lives;
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI endScore;
@@ -24,13 +25,14 @@ public class UIManager : MonoBehaviour
         startCanvas.SetActive(true);
         gameCanvas.SetActive(false);    
         questionCanvas.SetActive(false);
+        endCanvas.SetActive(false);
         buttonsCanvas.SetActive(false);
         Time.timeScale = 0;
         timeRemain = GameManager.Instance.Timer;
         localLives = GameManager.Instance.Lives;
         GameManager.Instance.onTakeDamage += CheckLives;
         GameManager.Instance.onScoreAdding += ChangeScore;
-        GameManager.Instance.onGameEnd += OpenQuestionCanvas;
+        GameManager.Instance.onGameEnd += OpenEndCanvas;
     }
     private void Update()
     {
@@ -44,15 +46,31 @@ public class UIManager : MonoBehaviour
         startCanvas.SetActive(false);
         gameCanvas.SetActive(true);
         questionCanvas.SetActive(false);
+        
         Time.timeScale = 1;
     }
     public void PlayAgain()
     {
         SceneManager.LoadScene(0);
     }
+    public void OpenEndCanvas()
+    {
+        int sco = GameManager.Instance.CurrentScore;
+        if (sco == 1 || sco == 21)
+            endScore.text = "Игра окончена. \nВы изменили " + sco + " стереотип";
+        else if (sco == 2 || sco == 22 || sco == 3 || sco == 4)
+            endScore.text = "Игра окончена. \nВы изменили " + sco + " стереотипа";
+        else
+            endScore.text = "Игра окончена. \nВы изменили " + sco + " стереотипов";
+        startCanvas.SetActive(false);
+        gameCanvas.SetActive(false);
+        questionCanvas.SetActive(false);
+        endCanvas.SetActive(true);
+
+    }
     public void OpenQuestionCanvas()
     {
-        endScore.text = score.text;
+        
         gameCanvas.SetActive(false);
         questionCanvas.SetActive(true);
         Time.timeScale = 0;
