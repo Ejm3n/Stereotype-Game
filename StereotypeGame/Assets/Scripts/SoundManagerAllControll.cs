@@ -21,20 +21,21 @@ public class SoundManagerAllControll : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+       
+    }
+
+    private void Awake()
+    {
         SoundManagerAllControll _thisGO = GetComponent<SoundManagerAllControll>();
 
         SoundManagerAllControll[] _go = FindObjectsOfType<SoundManagerAllControll>();
         for (int i = 0; i < _go.Length; i++)
             if (_go[i] != _thisGO)
                 Destroy(_go[i].gameObject);
-    }
-
-    private void Awake()
-    {
-
         instance = this;
         Inicialize();
         DontDestroyOnLoad(gameObject);
+        Destroy(FindObjectOfType<SMFixer>());
     }
 
     private void Inicialize()
