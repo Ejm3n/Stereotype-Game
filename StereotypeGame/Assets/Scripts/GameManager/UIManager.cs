@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System;
+using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -18,13 +15,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endScore;
     [SerializeField] private TextMeshProUGUI time;
     [SerializeField] private TextMeshProUGUI recordScore;
+    [SerializeField] private AudioClip tap;
     private float timeRemain;
     private int localLives;
     private TimeSpan timeSpanLeft;
     private void Start()
     {
         startCanvas.SetActive(true);
-        gameCanvas.SetActive(false);    
+        gameCanvas.SetActive(false);
         questionCanvas.SetActive(false);
         endCanvas.SetActive(false);
         buttonsCanvas.SetActive(false);
@@ -47,12 +45,17 @@ public class UIManager : MonoBehaviour
         startCanvas.SetActive(false);
         gameCanvas.SetActive(true);
         questionCanvas.SetActive(false);
-        
+
         Time.timeScale = 1;
     }
     public void PlayAgain()
-    {
+    {      
         SceneManager.LoadScene(0);
+    }
+    public void PlayTapSound()
+    {
+        if (SoundManagerAllControll.Instance && tap != null)
+            SoundManagerAllControll.Instance.ClipPlay(tap);
     }
     public void OpenEndCanvas()
     {
@@ -74,7 +77,7 @@ public class UIManager : MonoBehaviour
     }
     public void OpenQuestionCanvas()
     {
-        
+
         gameCanvas.SetActive(false);
         questionCanvas.SetActive(true);
         Time.timeScale = 0;
@@ -82,16 +85,16 @@ public class UIManager : MonoBehaviour
 
     private void CheckLives()
     {
-        for(int i = localLives;i>GameManager.Instance.Lives;i--)
+        for (int i = localLives; i > GameManager.Instance.Lives; i--)
         {
-            if(i>0)
-                lives[i-1].SetActive(false);
+            if (i > 0)
+                lives[i - 1].SetActive(false);
         }
     }
     private void ChangeScore()
     {
-        score.text = GameManager.Instance.CurrentScore.ToString() ;
+        score.text = GameManager.Instance.CurrentScore.ToString();
     }
-    
-    
+
+
 }

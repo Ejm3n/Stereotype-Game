@@ -1,19 +1,34 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 public class CardController : MonoBehaviour
 {
     public Transform SpriteHolder;
     public string Text;
     [SerializeField] private TextMeshPro textMesh;
     [SerializeField] private bool IsClickable = true;
-   [SerializeField] private CardContent cardContent;
-   [SerializeField] private bool isStereotype = false;
+    [SerializeField] private CardContent cardContent;
+    [SerializeField] private bool isStereotype = false;
     [SerializeField] private int timeToDisable;
-    public CardContent CardContent {set => cardContent = value; }
-    public bool IsStereotype { get => isStereotype; set => isStereotype = value; }
-  
+    [SerializeField] private AudioClip stereotypeClip;
+    [SerializeField] private AudioClip factClip;
+    [SerializeField] private Color red = Color.red;
+    [SerializeField] private Color green = Color.green;
+    [SerializeField] private Animator animPanel;
+    public CardContent CardContent { set => cardContent = value; }
+    public bool IsStereotype
+    {
+        get => isStereotype; set
+        {
+            isStereotype = value;
+            if (isStereotype)
+                animPanel.GetComponent<SpriteRenderer>().color = green;
+            else
+                animPanel.GetComponent<SpriteRenderer>().color = red;
+        }
+    }
+
+
 
     private void Awake()
     {
@@ -31,8 +46,13 @@ public class CardController : MonoBehaviour
             textMesh.text = cardContent.Fact;
         }
     }
+    public void DisableObj()
+    {
+        animPanel.SetTrigger("Close");
+    }
     private void OnEnable()
     {
+        textMesh.color = Color.black;
         IsClickable = true;
         StartCoroutine(DisableObject());
     }
@@ -43,23 +63,31 @@ public class CardController : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if(IsClickable)
+        if (IsClickable)
             Pressed();
     }
     private void Pressed()
     {
-        if(isStereotype)
+        if (isStereotype)
         {
+            if (SoundManagerAllControll.Instance && stereotypeClip != null)
+                SoundManagerAllControll.Instance.ClipPlay(stereotypeClip);
+            animPanel.SetTrigger("Start");
+            textMesh.color = Color.white;
             GameManager.Instance.AddScore();
             isStereotype = false;
         }
         else
         {
+            if (SoundManagerAllControll.Instance && factClip != null)
+                SoundManagerAllControll.Instance.ClipPlay(factClip);
+            animPanel.SetTrigger("Start");
+            textMesh.color = Color.white;
             GameManager.Instance.LoseLife();
         }
         IsClickable = false;
     }
 
-   
+
 
 }

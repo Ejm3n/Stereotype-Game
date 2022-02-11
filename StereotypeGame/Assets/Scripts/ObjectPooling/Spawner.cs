@@ -25,6 +25,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] private CardSO hardSentences;
     [SerializeField] private float timeToCreateCard;
     [SerializeField] private Vector2[] positions;
+    [SerializeField] private float minLeftSpawn;
+    [SerializeField] private float maxLeftSpawn;
+    [SerializeField] private float minRightSpawn;
+    [SerializeField] private float maxRightSpawn;
+    [SerializeField] private float ySpawn;
     [SerializeField] private float rotationMax;
     private ObjectPool<CardController> pool;
     private List<ContentStorage> easyCardContent ;
@@ -107,7 +112,7 @@ public class Spawner : MonoBehaviour
     }
     private void ChangeSpawnPoint()
     {
-        if (currentSpawnPoint >= positions.Length-1)
+        if (currentSpawnPoint >= 1)
         {
             currentSpawnPoint = 0;
         }
@@ -119,7 +124,12 @@ public class Spawner : MonoBehaviour
     private void CreateCard(bool isStereotype, bool isEasy)
     {
         CardController card = pool.GetFreeElement();
-        card.transform.position = positions[currentSpawnPoint];
+        if(currentSpawnPoint==0)       
+            card.transform.position = new Vector2( Random.Range(minLeftSpawn,maxLeftSpawn), ySpawn);       
+        else
+            card.transform.position = new Vector2( Random.Range(minRightSpawn, maxRightSpawn),ySpawn);
+
+        //card.transform.position = positions[currentSpawnPoint];
         card.SpriteHolder.rotation = Quaternion.Euler(0, 0, Random.Range(-rotationMax, rotationMax));
         if (isEasy)
             card.CardContent = easyCardContent[currentCardNum].Content;

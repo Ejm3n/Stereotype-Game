@@ -13,6 +13,7 @@ public class CardDisabler : MonoBehaviour
             {
                 GameManager.Instance.LoseLife();
             }
+            obj.DisableObj();
             collision.gameObject.SetActive(false);
         }
     }
