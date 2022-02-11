@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8178155305089198414}
   - component: {fileID: 8178155305089198413}
+  - component: {fileID: 5052596987284210384}
   m_Layer: 0
-  m_Name: Square
+  m_Name: CardSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 8178155305089198418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.01, y: 0.15, z: 0}
-  m_LocalScale: {x: 5.1551385, y: 4.7858386, z: 1}
+  m_LocalScale: {x: 5.155138, y: 4.7858386, z: 1}
   m_Children:
   - {fileID: 8666122952527859772}
   m_Father: {fileID: 8178155306639446008}
@@ -83,6 +84,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5052596987284210384
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8178155305089198418}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: afc76af295cbb8d45a9ee30b20e0ec02, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8178155306639446014
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8178155306639446008
 Transform:
   m_ObjectHideFlags: 0

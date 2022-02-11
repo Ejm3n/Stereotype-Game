@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI endScore;
     [SerializeField] private TextMeshProUGUI time;
+    [SerializeField] private TextMeshProUGUI recordScore;
     private float timeRemain;
     private int localLives;
     private TimeSpan timeSpanLeft;
@@ -62,6 +63,9 @@ public class UIManager : MonoBehaviour
             endScore.text = "Игра окончена. \nВы изменили " + sco + " стереотипа";
         else
             endScore.text = "Игра окончена. \nВы изменили " + sco + " стереотипов";
+        if (sco > PlayerPrefs.GetInt("RecordScore"))
+            PlayerPrefs.SetInt("RecordScore", sco);
+        recordScore.text = PlayerPrefs.GetInt("RecordScore").ToString();
         startCanvas.SetActive(false);
         gameCanvas.SetActive(false);
         questionCanvas.SetActive(false);
