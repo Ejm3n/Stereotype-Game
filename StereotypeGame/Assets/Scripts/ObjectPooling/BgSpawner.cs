@@ -13,6 +13,7 @@ public class BgSpawner : MonoBehaviour
     [SerializeField] private float minXPoint;
     [SerializeField] private float maxXPoint;
     [SerializeField] private float YPoint;
+    private int currentSprite = 0;
     private ObjectPool<BgSprite> spritesPool;
     private void Awake()
     {
@@ -35,7 +36,16 @@ public class BgSpawner : MonoBehaviour
     {
         BgSprite item = spritesPool.GetFreeElement();
         item.transform.position = GenerateCreationPoint();
-        item.SpriteRenderer.sprite = sprites[ Random.Range(0, sprites.Length)];
+        item.SpriteRenderer.sprite = sprites[ currentSprite];
+        NextSprite();
+       // item.gameObject.SetActive(false);
+    }
+    private void NextSprite()
+    {
+        if (currentSprite < sprites.Length - 1)
+            currentSprite++;
+        else
+            currentSprite = 0;
     }
     private Vector2 GenerateCreationPoint()
     {
