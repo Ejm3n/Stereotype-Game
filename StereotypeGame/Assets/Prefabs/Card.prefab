@@ -72,12 +72,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8154536644665829798, guid: 983a4cc4873a04d4fbffed1a7ab258dd, type: 3}
+  m_Sprite: {fileID: 3974603082758307947, guid: 983a4cc4873a04d4fbffed1a7ab258dd, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 0, y: 1.5586344}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -175,12 +175,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 8154536644665829798, guid: 983a4cc4873a04d4fbffed1a7ab258dd, type: 3}
+  m_Sprite: {fileID: 3974603082758307947, guid: 983a4cc4873a04d4fbffed1a7ab258dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 4.5, y: 1.55}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -267,8 +267,8 @@ MonoBehaviour:
     Stereotype: stereo
   isStereotype: 1
   timeToDisable: 25
-  stereotypeClip: {fileID: 8300000, guid: 31745d93abd7b654ea1ab3e992f91a68, type: 3}
-  factClip: {fileID: 8300000, guid: 745828adc5d9c6d4fab9a56585c64f87, type: 3}
+  stereotypeClip: {fileID: 8300000, guid: eeae2ea39d873aa4e8b6c69e9aef033d, type: 3}
+  factClip: {fileID: 8300000, guid: 45697db3aabe4c74284f35672e1b7edb, type: 3}
   red: {r: 1, g: 0.34509805, b: 0.20392159, a: 1}
   green: {r: 0.2901961, g: 0.7019608, b: 0.2901961, a: 1}
   animPanel: {fileID: 4164389747359444233}
