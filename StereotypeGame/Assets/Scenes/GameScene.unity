@@ -393,7 +393,7 @@ MonoBehaviour:
   minRightSpawn: 1
   maxRightSpawn: 2
   ySpawn: 11
-  rotationMax: 15
+  rotationMax: 0
 --- !u!1 &149411872
 GameObject:
   m_ObjectHideFlags: 0
