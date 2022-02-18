@@ -384,6 +384,8 @@ MonoBehaviour:
   cardPrefab: {fileID: 8178155306639446009, guid: 98d31ed381d8d4f42845e34c2dadba1e, type: 3}
   easySentences: {fileID: 11400000, guid: bed7d533338ba0f4b8a1ca739eda2db1, type: 2}
   hardSentences: {fileID: 11400000, guid: 525b22cb2122c8a49a0c338fe33f0548, type: 2}
+  easyCorrect: {fileID: 11400000, guid: 1a01be01b343a084dbb4c2118236b2ff, type: 2}
+  hardCorrect: {fileID: 11400000, guid: 594b2243112036340b93697bbbc38955, type: 2}
   timeToCreateCard: 2.89
   positions:
   - {x: -2.22, y: 11}
