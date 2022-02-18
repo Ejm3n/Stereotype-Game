@@ -24,7 +24,7 @@ public class CardController : MonoBehaviour
             if (isStereotype)
                 animPanel.GetComponent<SpriteRenderer>().color = green;
             else
-                animPanel.GetComponent<SpriteRenderer>().color = red;
+                animPanel.GetComponent<SpriteRenderer>().color = Color.black;
         }
     }
 
@@ -83,6 +83,8 @@ public class CardController : MonoBehaviour
                 SoundManagerAllControll.Instance.ClipPlay(factClip);
             animPanel.SetTrigger("Start");
             textMesh.color = Color.white;
+            cardContent.Stereotype = "Это не стереотип";
+            isStereotype = true;
             GameManager.Instance.LoseLife();
         }
         IsClickable = false;

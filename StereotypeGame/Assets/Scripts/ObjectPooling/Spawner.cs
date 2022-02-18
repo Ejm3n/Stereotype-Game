@@ -90,6 +90,7 @@ public class Spawner : MonoBehaviour
             if(!list[i].IsStereotype)
             {
                 list[i].Content.Fact = correctAnswers[correctCurrentNum];
+              
                 correctCurrentNum++;
             }
                 
