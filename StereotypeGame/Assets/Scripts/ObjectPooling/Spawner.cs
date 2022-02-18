@@ -59,7 +59,7 @@ public class Spawner : MonoBehaviour
             list = new List<ContentStorage>();
             for (int i = 0; i < contentIn.Content.Length; i++)//заполняем
             {
-                list.Add(new ContentStorage(contentIn.Content[i], Random.Range(0, 2) == 0));
+                list.Add(new ContentStorage(new CardContent(contentIn.Content[i]) , Random.Range(0, 2) == 0));
             }
             int isa = 0;
             int isnt = 0;
@@ -90,7 +90,7 @@ public class Spawner : MonoBehaviour
             if(!list[i].IsStereotype)
             {
                 list[i].Content.Fact = correctAnswers[correctCurrentNum];
-              
+                list[i].Content.Stereotype = "это не стереотип";
                 correctCurrentNum++;
             }
                 

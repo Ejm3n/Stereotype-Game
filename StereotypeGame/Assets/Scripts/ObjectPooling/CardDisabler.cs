@@ -9,7 +9,7 @@ public class CardDisabler : MonoBehaviour
         if (collision.GetComponent<CardController>())
         {
             CardController obj = collision.GetComponent<CardController>();
-            if (obj.IsStereotype)
+            if (obj.IsStereotype && obj.IsClickable)
             {
                 GameManager.Instance.LoseLife();
             }

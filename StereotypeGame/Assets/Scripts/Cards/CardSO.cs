@@ -5,6 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class CardContent
 {
+    public CardContent(CardContent cardContent)
+    {
+        Fact = cardContent.Fact;
+        Stereotype = cardContent.Stereotype;
+    }
     public string Fact;
     public string Stereotype;
 }

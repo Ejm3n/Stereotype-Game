@@ -6,7 +6,7 @@ public class CardController : MonoBehaviour
     public Transform SpriteHolder;
     public string Text;
     [SerializeField] private TextMeshPro textMesh;
-    [SerializeField] private bool IsClickable = true;
+    [SerializeField] public bool IsClickable = true;
     [SerializeField] private CardContent cardContent;
     [SerializeField] private bool isStereotype = false;
     [SerializeField] private int timeToDisable;
@@ -82,8 +82,7 @@ public class CardController : MonoBehaviour
             if (SoundManagerAllControll.Instance && factClip != null)
                 SoundManagerAllControll.Instance.ClipPlay(factClip);
             animPanel.SetTrigger("Start");
-            textMesh.color = Color.white;
-            cardContent.Stereotype = "Это не стереотип";
+            textMesh.color = Color.white;           
             isStereotype = true;
             GameManager.Instance.LoseLife();
         }
