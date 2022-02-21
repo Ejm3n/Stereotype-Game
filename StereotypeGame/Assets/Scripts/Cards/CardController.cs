@@ -52,6 +52,12 @@ public class CardController : MonoBehaviour
     }
     private void OnEnable()
     {
+        StartCoroutine(OnEnableActivation());
+    }
+    private IEnumerator OnEnableActivation()
+    {
+        yield return new WaitForSeconds(.3f);
+
         textMesh.color = Color.black;
         IsClickable = true;
         StartCoroutine(DisableObject());
@@ -63,7 +69,7 @@ public class CardController : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (IsClickable)
+        if (IsClickable && Time.timeScale ==1)
             Pressed();
     }
     private void Pressed()
