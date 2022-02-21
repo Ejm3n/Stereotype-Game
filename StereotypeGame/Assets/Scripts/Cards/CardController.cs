@@ -28,8 +28,6 @@ public class CardController : MonoBehaviour
         }
     }
 
-
-
     private void Awake()
     {
         textMesh.text = Text;
@@ -52,12 +50,18 @@ public class CardController : MonoBehaviour
     }
     private void OnEnable()
     {
+        
         StartCoroutine(OnEnableActivation());
+    }
+    private void CorrectTexts()
+    {
+        cardContent.Fact = cardContent.Fact.Replace('*', '\n');
+        cardContent.Stereotype = cardContent.Stereotype.Replace('*', '\n');
     }
     private IEnumerator OnEnableActivation()
     {
         yield return new WaitForSeconds(.3f);
-
+        CorrectTexts();
         textMesh.color = Color.black;
         IsClickable = true;
         StartCoroutine(DisableObject());
