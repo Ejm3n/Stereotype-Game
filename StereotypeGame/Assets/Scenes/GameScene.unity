@@ -4298,7 +4298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
-  cardSpeed: 1.3
+  cardSpeed: 1.33
   speedToAdd: 0.55
   timeToChangeMode: 60
   timer: 120
